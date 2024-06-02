@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Task 2</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    text-align: center;
+  }
+  nav ul {
+    list-style: none;
+  }
+  nav li {
+    display: inline-block;
+    margin-right: 5px;
+    padding-right: 5px;
+    border-right: 1px solid black;
+  }
+  nav li a{
+    color:black;
+    text-decoration: none;
+  }
+  nav li a:hover {
+    text-decoration: underline;
+  }
+  nav li:last-child {
+    border-right: 0;
+    padding-right: 0;
+    margin-right: 0;
+  }
+  article, footer, nav {
+    padding: 10px;
+  }
+  article h1 {
+    margin-bottom: 10px;
+  }
+  article p {
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  footer {
+    text-align: center;
+    color: white;
+  }
+  @media (orientation: landscape) and (max-width: 767px){
+    body {
+      background: black;
+      color: white;
+    }
+    header {
+      display: flex;
+      align-items: center;
+    }
+    nav {
+      margin-left: 20px;
+    }
+    article {
+      columns: 100px 2;
+    }
+    footer {
+      background-color: black;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1024px){
+    body {
+      background-color: red;
+      color: black;
+    }
+    header {
+      display: flex;
+      align-items: center;
+    }
+    nav {
+      margin-left: 20px;
+    }
+    article {
+      columns: 100px 2;
+    }
+    footer {
+      background-color: red;
+    }
+    
+  }
+  @media (min-width: 1025px){
+    body {
+      background: blue;
+      color: white;
+    }
+    
+    footer {
+      background-color: blue;
+    }
+    
+  }
+  @media print{
+    body {
+      background-color: aliceblue;
+
+    }
+    
+    footer {
+      background-color: blue;
+      color: black;
+    }
+    header,nav,footer {
+      display: none;
+    }
+    
+  }
+
+ img {
+   max-width: 600;
+   height: auto;
+ }
+</style>
+</head>
+<body>
+  <header>
+    <img src="nature.jpg" alt="Logo">
+    <nav>
+     <ul>
+      <li><a href=””>Home</a></li>
+      <li><a href=””>About</a></li>
+      <li><a href=””>Contacts</a></li>
+      <li><a href=””>Offers</a></li>
+      </ul>
+    </nav>
+  </header>
+  <article>
+    <h1>Information about nature</h1>
+    <p>Nature is an inherent character or constitution,[1] particularly of the ecosphere or the universe as a whole. In this general sense nature refers to the laws, elements and phenomena of the physical world, including life. Although humans are part of nature, human activity or humans as a whole are often described as at times at odds, or outright separate and even superior to nature.[2]</p>
+
+    <p>During the advent of modern scientific method in the last several centuries, nature became the passive reality, organized and moved by divine laws.[3][4] With the Industrial revolution, nature increasingly became seen as the part of reality deprived from intentional intervention: it was hence considered as sacred by some traditions (Rousseau, American transcendentalism) or a mere decorum for divine providence or human history (Hegel, Marx). However, a vitalist vision of nature, closer to the pre-Socratic one, got reborn at the same time, especially after Charles Darwin.[2]</p>
+  </article>
+  <footer>Website by Ganiev Abbos</footer>
+</body>
+</html>

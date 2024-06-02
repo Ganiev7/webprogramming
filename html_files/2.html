@@ -1,0 +1,45 @@
+<!--TASK 4-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Nature</title>
+    </head>
+    <style>
+        .title {
+            text-align: center;
+        }
+        .video-container {
+            max-width:1080px;
+            margin: 16px auto;
+        }
+        .video-container video {
+            width:100%;
+        }
+    </style>
+    <body>
+        <div class="title">
+            <h1>Nature</h1>
+        </div>
+        
+        
+        <div class="video-container">
+            <video id="video-1" poster="nature1.jpg" controls height="400">
+                <source src="scenery.mp4" type="video/webm">
+                <source src="scenery.mp4" type="video/mp4">
+                <track src="subs.vtt" kind="subtitles" 
+                label="Korean" srclang="Korean" default>
+                Your browser does not support the html5<code>video</code> element.
+                
+            </video>
+        </div>
+
+        <div class="audio-container">
+            <audio id="audio-1" controls>
+                <source src="calm_music.mp3" type="audio/mpeg">
+                <source src="calm_music.mp3" type="audio/ogg">
+                Your browser does not support the html5 <code>audio</code> element.
+            </audio>
+        </div>
+    </body>
+</html>

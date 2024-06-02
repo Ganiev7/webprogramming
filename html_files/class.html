@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="utf-8">
+   <title>Application form</title>
+ </head>
+
+ <body>
+  <h1>Signup Form</h1>
+    <form action="url_to_send_form_data" method="post"
+      <fieldset>
+          <div>
+            <label for="first_name">First name:</label>
+            <input type="text" name="firstname" id="first_name" />
+          </div>
+          <br>
+
+          <div>
+            <label for="last_name">Last name:</label>
+            <input type="text " name="lastname" id="last_name" />
+          </div>
+          <br>
+          <div>
+            Email:
+            <input type="email" name="email"/>
+          </div>
+          <br>
+          <div>
+            <label for="gender">Gender:</label>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+          </div>
+          <br>
+          <div>
+            <label for="city">City:</label>
+            <select id="city">
+              <option value="Seoul">Seoul</option>
+              <option value="Busan">Busan</option>
+              <option value="Incheon">Incheon</option>
+              <option value="Suwon">Suwon</option>
+            </select>
+          </div>
+          <br>
+          <div>
+            Password:
+            <input type="password" name="password"/>
+          </div>
+          <br>
+          <div>
+          <label for="cash">Pay cash:</label>
+          <input type="radio" id="Cash" name="payment" value="Cash">
+          <label for="Cash"></label>
+
+          <label for="card">Pay by card:</label>
+          <input type="radio" id="Card" name="payment" value="Card">
+          <label for="Card"></label>
+          </div>
+          <br>
+          <div>
+            <label for="comments">Comments:</label><br />
+            <textarea id="comments" rows="4" cols="20"></textarea>
+          </div>
+
+          <button type="submit">Submit</button>
+
+      </fieldset>
+    </form>
+</body>
+</html>
