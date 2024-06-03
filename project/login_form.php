@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         // Пользователь не найден
-        echo "u don’t sign up";
+        echo "u don't sign up";
     }
 
     $stmt->close();
