@@ -1,68 +1,34 @@
-
 <?php
-// Стартуем сессию
-session_start();
+include 'database.php';
 
-// Подключаемся к базе данных
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "quiz_db";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Проверяем соединение
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-// Проверяем, отправлена ли форма
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+$email_exists="false";
 
-    // Проверяем, зарегистрирован ли пользователь
-    $sql = "SELECT * FROM users WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    // Check if the email is already registered
+    $verify_query = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $verify_query->bind_param("s", $email);
+    $verify_query->execute();
+    $result = $verify_query->get_result();
 
     if ($result->num_rows > 0) {
-        // Пользователь найден, теперь проверим пароль
-        $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            // Пароль верный, пользователь авторизован
-            $_SESSION['user_id'] = $user['id'];
-            echo "Welcome, " . $user['email'];
-        } else {
-            // Пароль неверный
-            echo "Incorrect password";
-        }
+        header("location: welcome2.php?username=" .urlencode($username));
+        exit();
     } else {
-        // Пользователь не найден
-        echo "u don't sign up";
+        echo "<div class='message'> This user doesn't exist</div>";
     }
 
-    $stmt->close();
+    $verify_query->close();
+    $conn->close();
 }
-
-$conn->close();
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-    <form method="post" action="">
-        Email: <input type="email" name="email" required><br>
-        Password: <input type="password" name="password" required><br>
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
 
 
 
@@ -94,11 +60,15 @@ $conn->close();
             <div class="home-content">
             <div class="login_form" id="loginForm" style="display: block;">
                 <h1>Login</h1>
-                <form action="index.php" method="post">
+                <form action="login_form.php" method="post">
                     <div class="userinfo">
                         <input type="text" name="username" id="loginUsername" placeholder="Username" required>
                         <i class='bx bx-user' ></i>
                     </div>
+                    <div class="userinfo">
+                            <input type="text" name="email" id="signupEmail" placeholder="Email" required>
+                            <i class='bx bx-envelope'></i>
+                        </div>
                     <div class="userinfo">
                         <input type="password" name="password" id="loginPassword" placeholder="Password" required>
                         <i class='bx bx-lock-alt' ></i>
@@ -108,7 +78,7 @@ $conn->close();
                     </div>
                     <div class="link">
                         <p>Don't have an account?</p>
-                        <a href="signup_form.php" id="showSignup">Signup Now</a>
+                        <a href="signup_form.php">Signup Now</a>
                     </div>
                 </form>
     </div>
@@ -116,7 +86,16 @@ $conn->close();
         </section> 
     </main>
 
-    
+    <script>
+    window.onload = function() {
+        var emailExists = <?php echo $email_exists; ?>;
+
+        if (emailExists) {
+            alert('This user does not exist');
+        }
+    };
+    </script>
+
 
     <script src="index.js"></script>
 </body>

@@ -162,3 +162,52 @@ body {
   .link a:hover {
     text-decoration: underline;
   }
+  .content-info {
+    background-color: rgb(3, 78, 3, 0.7);
+    position: fixed;
+    top: 200px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    border-radius: 30px;
+    width: 600px; 
+    padding: 40px;
+}
+
+  .content-info h2 {
+    font-size: 40px; 
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.content-info p {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.categories {
+  display: flex;
+  gap: 20px;
+  justify-content: center; 
+  flex-wrap: wrap; 
+  margin-top: 150px;
+  width: 100%; 
+}
+.card {
+  color: aliceblue;
+  padding: 10px;
+  border: 20px;
+  border-radius: 15px;
+}
+
+.cards p {
+  margin-top:10px;
+}
+
+.card img {
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card img:hover {
+  transform: translateX(10px);
+}

@@ -1,35 +1,61 @@
 <?php
 include 'database.php';
-var_dump($conn);
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+
+$email_exists="false";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    // Check if the email is already registered
+    $verify_query = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $verify_query->bind_param("s", $email);
+    $verify_query->execute();
+    $result = $verify_query->get_result();
 
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-
-    if (!$stmt) {
-        die("Error: " . $conn->error);
-    }
-
-    $stmt->bind_param("sss", $username, $email, $hashed_password);
-
-    if ($stmt->execute()) {
-        $showAlert = true;
+    if ($result->num_rows != 0) {
+        $email_exists = "true";
+        echo "<div class='message'>Email already exists in the server.
+        Please use another email or log in with current</div>";
+        exit();
     } else {
-        $showError = "Error: " . $stmt->error;
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Prepare and execute the insert statement
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+
+        if (!$stmt) {
+            die("Prepare failed: " . $conn->error);
+        }
+
+        $stmt->bind_param("sss", $username, $email, $hashed_password);
+
+        if ($stmt->execute()) {
+            // Redirect user to welcome.php after successful registration
+            header("Location: welcome.php?username=" . urlencode($username));
+            exit(); // Ensure that subsequent code is not executed after redirection
+        } else {
+            echo "<div class='message'>
+                    <p>Execute failed: " . $stmt->error . "</p>
+                  </div> <br>";
+        }
+        
+        $stmt->close();
     }
 
-    $stmt->close();
+    
+    $verify_query->close();
+    $conn->close();
 }
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -77,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <div class="link">
                             <p>Already have an account?</p>
-                            <a href="login_form.php" id="showLogin">Login Now</a>
+                            <a href="login_form.php" >Login Now</a>
                         </div>
                     </form>
                 </div>

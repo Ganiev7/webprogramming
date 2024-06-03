@@ -1,4 +1,4 @@
-<p?php
+c<?php
 if (!isset($_GET['username'])) {
     die("No username provided");
 }
@@ -38,14 +38,15 @@ session_start();
 
         <section class="home">
             <div class="content-info">
-                <h2>Welcome, <?php echo $username; ?>!</h2>
-                <p>Thank you for signing up. We're glad to have you here.</p>
+                <h2>Welcome back, <?php echo $username; ?>!</h2>
+                <p>Thank you for comming back. We're glad to have you here again.</p>
+                <p>Please choose one category</p>
             </div>
 
             <div class="categories">
                 <a href="history.html" class="card">
                     <img src="images/history.jpg" alt="History">
-                    <p>History</p>
+                    <p>History</P>
                 </a>
                 <a href="geography.html" class="card">
                     <img src="images/geography.jpg" alt="Geography">
@@ -60,9 +61,10 @@ session_start();
                     <p>Films</p>
                 </a>
             </div>
+            
         </section>
     </main>
-    
+
     <script src="index.js"></script>
 </body>
 </html>
