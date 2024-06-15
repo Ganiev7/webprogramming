@@ -35,12 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             header("Location: welcome.php?username=" . urlencode($username));
             exit(); 
-        } else {
-            echo "<div class='message'>
-                    <p>Execute failed: " . $stmt->error . "</p>
-                  </div> <br>";
-        }
-        
+        } 
         $stmt->close();
     }
 
