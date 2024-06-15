@@ -33,6 +33,7 @@ session_start();
                 <a href="index.php">Home</a>
                 <a href="about.php">About</a>
                 <a href="contact.php">Contact</a>
+                <a href="profile.php">Profile</a>
             </nav>
         </header>
 
@@ -43,11 +44,11 @@ session_start();
             </div>
 
             <div class="categories">
-                <a href="history.php" class="card">
+                <a href="history.html" class="card">
                     <img src="images/history.jpg" alt="History">
                     <p>History</p>
                 </a>
-                <a href="geography.php" class="card">
+                <a href="geography.html" class="card">
                     <img src="images/geography.jpg" alt="Geography">
                     <p>Geography</p>
                 </a>

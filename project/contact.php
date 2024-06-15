@@ -19,14 +19,17 @@
                 <a href="index.php">Home</a>
                 <a href="about.php">About</a>
                 <a href="contact.php">Contact</a>
+                <a href="profile.php">Profile</a>
             </nav>
         </header>
 
         <section class="home">
-            <div class="home-content">
-                <h1>Welcome to Clover</h1>
-                <p>Make your learning way fun and effective</p>
-                <button class="start" onclick="window.location.href='signup_form.php'">Let's get started</button>
+            <div class="content-info">
+                <h1>How you can contact us?</h1><br>
+                <p>You can visit our office</p><br>
+                <p>Location: 서울 군자로 114, South Korea</p><br>
+                <p>Contact number: +82 010 0000 0000</p>
+                <p>Feel free to contact us</p>
             </div>
         </section> 
     </main>

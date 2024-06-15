@@ -25,10 +25,9 @@
         <section class="home">
             <div class="content-info">
                 <h2>Challenge yourself with Clover</h2>
-                <p>The Clover provides you with divesre type of questions. Compete with friends and find out who is the smartest</p>
-                <h3>The logo Clover representes the leaf which brings luck in our life</h3>
+                <p>The Clover provides you with diverse type of questions. Compete with friends and find out who is the smartest</p><br>
+                <h3>The logo Clover representes the leaf which brings luck in our life</h3> <br>
                 <p>Interesting fact about our logo. The word Clover is pronounce as word 'clever' in russian</p>
-                <p></p>
             </div>
         </section>
     </main>
