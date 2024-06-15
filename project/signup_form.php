@@ -12,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // Check if the email is already registered
     $verify_query = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $verify_query->bind_param("s", $email);
     $verify_query->execute();
@@ -24,22 +23,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         Please use another email or log in with current</div>";
         exit();
     } else {
-        // Hash the password
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Prepare and execute the insert statement
+        
         $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
 
         if (!$stmt) {
             die("Prepare failed: " . $conn->error);
         }
 
-        $stmt->bind_param("sss", $username, $email, $hashed_password);
+        $stmt->bind_param("sss", $username, $email, $password);
 
         if ($stmt->execute()) {
-            // Redirect user to welcome.php after successful registration
             header("Location: welcome.php?username=" . urlencode($username));
-            exit(); // Ensure that subsequent code is not executed after redirection
+            exit(); 
         } else {
             echo "<div class='message'>
                     <p>Execute failed: " . $stmt->error . "</p>
@@ -75,9 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="#" class="logo">Clover</a>
             <img src="images/clover.png" alt="Icon" class="icon">
             <nav class="navbar">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+                <a href="index.php">Home</a>
+                <a href="about.php">About</a>
+                <a href="contact.php">Contact</a>
             </nav>
         </header>
 

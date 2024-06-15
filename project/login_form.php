@@ -5,28 +5,37 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$email_exists="false";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $password = $_POST["password"] ;
 
-    // Check if the email is already registered
     $verify_query = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $verify_query->bind_param("s", $email);
     $verify_query->execute();
     $result = $verify_query->get_result();
 
     if ($result->num_rows > 0) {
-        header("location: welcome2.php?username=" .urlencode($username));
-        exit();
+        $row = $result-> fetch_assoc();
+        $password = $row ['password'];
+
+        if ($password===$password){
+            header("location: welcome2.php?username=" .urlencode($username));
+            exit();
+
+        }else{
+            echo "<div class='message'>Incorrect password. Please try again.</div>";
+            exit();
+        }
     } else {
-        echo "<div class='message'> This user doesn't exist</div>";
+        echo "<div class='message'>This user doesn't exist</div>";
+        exit();
     }
 
     $verify_query->close();
+
     $conn->close();
+ 
 }
 ?>
 
@@ -50,9 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <img src="images/clover.png" alt="Icon" class="icon">
 
             <nav class="navbar">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+                <a href="index.php">Home</a>
+                <a href="about.php">About</a>
+                <a href="contact.php">Contact</a>
             </nav>
         </header>
 
@@ -85,19 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </section> 
     </main>
-
-    <script>
-    window.onload = function() {
-        var emailExists = <?php echo $email_exists; ?>;
-
-        if (emailExists) {
-            alert('This user does not exist');
-        }
-    };
-    </script>
-
-
-    <script src="index.js"></script>
 </body>
 </html>
 

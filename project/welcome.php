@@ -1,4 +1,4 @@
-<p?php
+<?php
 if (!isset($_GET['username'])) {
     die("No username provided");
 }
@@ -30,28 +30,28 @@ session_start();
             <a href="#" class="logo">Clover</a>
             <img src="images/clover.png" alt="Icon" class="icon">
             <nav class="navbar">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+                <a href="index.php">Home</a>
+                <a href="about.php">About</a>
+                <a href="contact.php">Contact</a>
             </nav>
         </header>
 
         <section class="home">
             <div class="content-info">
                 <h2>Welcome, <?php echo $username; ?>!</h2>
-                <p>Thank you for signing up. We're glad to have you here.</p>
+                <p>Thank you for signing up. We're glad to see you here.</p>
             </div>
 
             <div class="categories">
-                <a href="history.html" class="card">
+                <a href="history.php" class="card">
                     <img src="images/history.jpg" alt="History">
                     <p>History</p>
                 </a>
-                <a href="geography.html" class="card">
+                <a href="geography.php" class="card">
                     <img src="images/geography.jpg" alt="Geography">
                     <p>Geography</p>
                 </a>
-                <a href="math.html" class="card">
+                <a href="math.php" class="card">
                     <img src="images/math.jpg" alt="Math">
                     <p>Math</p>
                 </a>
